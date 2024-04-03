@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: gainsboro;
+}
+
+#calculator {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #7A568A;
+}
+
+#display {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #7A568A;
+    background-color: gray;
+    border-radius: 4px;
+    text-align: right;
+}
+
+#buttons button {
+    width: 30%;
+    padding: 2px;
+    margin: 1%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: orangered;
+    color: white;
+}
+
+#buttons button:nth-child(4n) {
+    background-color: #28a745;
+}
+
+#buttons button:last-child {
+    background-color: #dc3545;
+}
