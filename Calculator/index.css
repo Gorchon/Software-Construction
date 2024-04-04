@@ -41,3 +41,16 @@ body {
 #buttons button:last-child {
     background-color: #dc3545;
 }
+
+#buttons button:nth-child(5n+1) {
+    background-color: #6c757d; /* For the delete button */
+}
+
+#buttons button:nth-child(5n+2) {
+    background-color: #17a2b8; /* For the power button */
+}
+
+/* Style for the history button if you added it */
+#buttons button:nth-child(5n+3) {
+    background-color: #ffc107; /* For the history button */
+}
