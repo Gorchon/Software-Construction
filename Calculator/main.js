@@ -25,7 +25,7 @@ function calculate() {
     let result;
     switch (currentOperation) {
         case '+':
-            result = parseFloat(num1) + parseFloat(num2);
+            result = parseFloat(num1) + parseFloat(num2);   
             break;
         case '-':
             result = parseFloat(num1) - parseFloat(num2);
@@ -60,7 +60,7 @@ function showHistory() {
 
 function deleteLastEntry() {
     if (operationSet && num2 !== '') { //if operation is set and num2 is not empty 
-        num2 = num2.slice(0, -1); // Remove the last character
+        num2 = num2.slice(0, -1); 
     } else if (!operationSet && num1 !== '') { //if operation is not set and num1 is not empty
         num1 = num1.slice(0, -1);
     }
@@ -68,7 +68,7 @@ function deleteLastEntry() {
 }
 
 function updateDisplay() {
-    document.getElementById('display').value = `${num1} ${currentOperation} ${num2}`;
+    document.getElementById('display').value = `${num1} ${currentOperation} ${num2}`; 
 }
 
 function clearDisplay() {
