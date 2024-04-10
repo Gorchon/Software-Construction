@@ -25,6 +25,8 @@
     border-radius: 10px;
     border-radius: 5% 5% 20% 5%;
     background-color: #c9c8c7;
+
+    
 }
 
 .screen-layout{
@@ -33,6 +35,10 @@
     border: solid 5px black;
     border-radius: 5%;
     background-color: white;
+    display: grid;
+    column-count: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
+
 }
 
 .container-screen{

@@ -1,14 +1,17 @@
 // import { useState } from "react";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import ScreenPokemonnes from "./components/ScreenPokemonnes";
 
 export type Pokemon = {
   name: string;
   url: string;
+  id: string;
 };
 
 function App() {
+  const [pokemones, setPokemones] = useState<Pokemon[]>([]);
   // const [count, setCount] = useState(0);
   const pokeUrl = "https://pokeapi.co/api/v2/pokemon";
 
@@ -26,6 +29,7 @@ function App() {
     );
 
     const pokemonWithImages = await Promise.all(dataPromises);
+    setPokemones(pokemonWithImages);
     console.log(pokemonWithImages);
   };
 
@@ -39,7 +43,9 @@ function App() {
         <div className="gameboy-header">Gameboy</div>
         <div className="layout-game">
           <div className="container-screen">
-            <div className="screen-layout"></div>
+            <div className="screen-layout">
+              <ScreenPokemonnes pokemones={pokemones} />
+            </div>
           </div>
 
           <div className="button-container">
