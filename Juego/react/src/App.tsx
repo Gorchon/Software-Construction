@@ -6,8 +6,11 @@ import ScreenPokemonnes from "./components/ScreenPokemonnes";
 
 export type Pokemon = {
   name: string;
-  url: string;
   id: string;
+  sprites: {
+    front_default: string;
+    // include other sprite variations if needed
+  };
 };
 
 function App() {
@@ -24,9 +27,14 @@ function App() {
 
   const pokemonData = async (pokeUrl: string) => {
     const response = await fetchData(pokeUrl);
-    const dataPromises = response.results.map((pokemon: Pokemon) =>
-      fetchData(pokeUrl + "/" + pokemon.name)
-    );
+    const dataPromises = response.results.map(async (pokemon: Pokemon) => {
+      const details = await fetchData(pokeUrl + "/" + pokemon.name);
+      return {
+        name: details.name,
+        id: details.id.toString(), // Convert to string if it's not already
+        sprites: details.sprites,
+      };
+    });
 
     const pokemonWithImages = await Promise.all(dataPromises);
     setPokemones(pokemonWithImages);

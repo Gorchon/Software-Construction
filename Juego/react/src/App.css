@@ -29,16 +29,15 @@
     
 }
 
-.screen-layout{
+.screen-layout {
     width: 360px; 
     height: 250px;
     border: solid 5px black;
     border-radius: 5%;
     background-color: white;
     display: grid;
-    column-count: auto auto auto;
     grid-template-columns: repeat(3, 1fr);
-
+    overflow: auto; /* This will make the container scrollable */
 }
 
 .container-screen{
@@ -231,4 +230,20 @@
     top: 50%;
     transform: translateY(-50%);
     border-left-color: #7e807e;
+}
+
+.pokemons-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns as required  1 fr means  */ 
+    gap: 20px; /* Adjust gap as needed */
+    height: 100%; /* This will make sure the container fits within .screen-layout */
+
+}
+
+.pokemon-grid-item {
+    /* Add styles for individual Pokémon items here */
+    cursor: pointer; /* Changes the mouse cursor to indicate clickable items */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
