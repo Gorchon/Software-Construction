@@ -20,7 +20,7 @@
 
 .layout-game{
     width: 400px; 
-    height: 500px;
+    height: 6   00px;
     border: solid 5px black;
     border-radius: 10px;
     border-radius: 5% 5% 20% 5%;
@@ -29,7 +29,7 @@
 
 .screen-layout{
     width: 360px; 
-    height: 150px;
+    height: 250px;
     border: solid 5px black;
     border-radius: 5%;
     background-color: white;
@@ -55,7 +55,7 @@
     margin-left: 10px;
     width: 100px;
     height: 100px;
-    margin-top: 13rem;
+    margin-top: 17rem;
    
     display: flex;
     justify-content: space-around;

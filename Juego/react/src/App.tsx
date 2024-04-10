@@ -1,9 +1,37 @@
 // import { useState } from "react";
 
+import { useEffect } from "react";
 import "./App.css";
+
+export type Pokemon = {
+  name: string;
+  url: string;
+};
 
 function App() {
   // const [count, setCount] = useState(0);
+  const pokeUrl = "https://pokeapi.co/api/v2/pokemon";
+
+  const fetchData = async (url: string) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    return data;
+  };
+
+  const pokemonData = async (pokeUrl: string) => {
+    const response = await fetchData(pokeUrl);
+    const dataPromises = response.results.map((pokemon: Pokemon) =>
+      fetchData(pokeUrl + "/" + pokemon.name)
+    );
+
+    const pokemonWithImages = await Promise.all(dataPromises);
+    console.log(pokemonWithImages);
+  };
+
+  useEffect(() => {
+    pokemonData(pokeUrl);
+  }, []);
 
   return (
     <div className="main-container">
