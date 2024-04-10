@@ -1,0 +1,228 @@
+.main-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Fill the height of the screen */
+    text-align: center;
+}
+
+.gameboy-container {
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+}
+
+.gameboy-header {
+    margin-bottom: 30px; /* Add space between the header and the Gameboy graphic */
+    
+}
+
+.layout-game{
+    width: 400px; 
+    height: 500px;
+    border: solid 5px black;
+    border-radius: 10px;
+    border-radius: 5% 5% 20% 5%;
+    background-color: #c9c8c7;
+}
+
+.screen-layout{
+    width: 360px; 
+    height: 150px;
+    border: solid 5px black;
+    border-radius: 5%;
+    background-color: white;
+}
+
+.container-screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5%;
+}
+
+.container-action{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 8rem;
+}
+
+.container-select{
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 100px;
+    height: 100px;
+    margin-top: 13rem;
+   
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+
+.container-pad{
+    position: relative; /* Permite posicionar los elementos internos absolutamente respecto a este contenedor */
+    width: 100px;
+    height: 100px;
+
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5%;
+}
+
+.button-a-container{
+    margin-top: 3rem;
+}
+
+.button-b{
+    width: 50px; /* Tamaño del botón */
+    height: 50px; /* Tamaño del botón */
+    background-color: red; /* Color de fondo del botón */
+    border: 5px solid black; /* Borde del botón */
+    border-radius: 100%; /* Hace que el div sea un círculo */
+    display: inline-block; /* Hace que los botones se coloquen en línea */
+    margin-left: 20px;
+}   
+
+.button-a {
+    width: 50px; /* Tamaño del botón */
+    height: 50px; /* Tamaño del botón */
+    background-color: red; /* Color de fondo del botón */
+    border: 5px solid black; /* Borde del botón */
+    border-radius: 100%; /* Hace que el div sea un círculo */
+    display: inline-block; /* Hace que los botones se coloquen en línea */
+    
+
+}
+
+.button-a, .button-b {
+    /* Existing styles... */
+    transition: transform 0.1s ease; /* Smooth transition for the transform property */
+}
+
+.button-a:active, .button-b:active {
+    transform: scale(0.9); /* Scales down the button to 90% of its original size */
+}
+
+.button-a-container{
+    rotate: 330deg;
+}
+
+.button-b-container{
+    rotate: 330deg;
+}
+
+
+
+
+.container-start-button{
+    rotate: 330deg;
+}
+.container-select-button{
+    rotate: 330deg;
+
+}
+
+.button-select{
+    width: 32px; 
+    height: 8px;
+    background-color: #5c5959;
+
+    border: solid 1px #7e807e;
+
+}
+
+.button-start{
+    width: 32px; 
+    height: 8px;
+    background-color: #5c5959;
+    border: solid 1px #7e807e;
+    
+}
+
+.button-select, .button-start {
+    /* Existing styles... */
+    transition: transform 0.1s ease; /* Smooth transition for the transform property */
+}
+
+.button-select:active, .button-start:active {
+    transform: scale(0.9); /* Scales down the button to 90% of its original size */
+}
+
+
+
+.container-pad {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 8rem;
+}
+
+/* Press effect */
+.container-pad button {
+    transition: box-shadow 0.1s, transform 0.1s;
+    box-shadow: 0 2px #999;
+}
+
+
+/* Green filter for the screen */
+.screen-layout {
+    /* Other existing styles... */
+    filter: sepia(100) hue-rotate(90deg); 
+} 
+
+.left-btn, .right-btn {
+    position: absolute; /* Positions the buttons absolutely within the .container-pad */
+    width: 35px; /* Width of the button */
+    height: 30px; /* Height of the button */
+    background-color: #2d2e2d; /* Color of the button */
+
+}
+
+.up-btn, .down-btn {
+    position: absolute; /* Positions the buttons absolutely within the .container-pad */
+    width: 30px; /* Width of the button */
+    height: 45px; /* Height of the button */
+    background-color: #2d2e2d; /* Color of the button */
+
+
+}
+
+.up-btn {
+    margin-top: 5px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-color:#7e807e;
+}   
+
+.down-btn {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the button horizontally */
+    margin-bottom: 4px;
+    border-top-color: #7e807e;
+}
+
+.left-btn {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right-color: #7e807e;
+
+}
+
+.right-btn {
+
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left-color: #7e807e;
+}
