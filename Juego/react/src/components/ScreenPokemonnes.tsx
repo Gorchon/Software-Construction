@@ -1,24 +1,35 @@
+import React, { useEffect, useRef } from "react";
 import { Pokemon } from "../App";
 
 type ScreenPokemonnesProps = {
   pokemones: Pokemon[];
+  selectedPokemonIndex: number;
 };
 
-const ScreenPokemonnes = ({ pokemones }: ScreenPokemonnesProps) => {
-  console.log("screenPoke", pokemones);
+const ScreenPokemonnes = ({
+  pokemones,
+  selectedPokemonIndex,
+}: ScreenPokemonnesProps) => {
+  const selectedRef = useRef<HTMLDivElement>(null);
 
-  const handleClick = (pokemonName: string) => {
-    // Replace this with the actual click handling logic
-    console.log(`You clicked on ${pokemonName}`);
-  };
+  useEffect(() => {
+    if (selectedRef.current) {
+      selectedRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  }, [selectedPokemonIndex]);
 
   return (
     <div className="pokemons-grid-container">
-      {pokemones.map((pokemon) => (
+      {pokemones.map((pokemon, index) => (
         <div
           key={pokemon.id}
-          className="pokemon-grid-item"
-          onClick={() => handleClick(pokemon.name)}
+          className={`pokemon-grid-item ${
+            index === selectedPokemonIndex ? "selected" : ""
+          }`}
+          ref={index === selectedPokemonIndex ? selectedRef : null}
         >
           <h3>{pokemon.name}</h3>
           <img src={pokemon.sprites.front_default} alt={pokemon.name} />

@@ -90,7 +90,7 @@
 .button-b{
     width: 50px; /* Tamaño del botón */
     height: 50px; /* Tamaño del botón */
-    background-color: red; /* Color de fondo del botón */
+    background-color: #911d3c; /* Color de fondo del botón */
     border: 5px solid black; /* Borde del botón */
     border-radius: 100%; /* Hace que el div sea un círculo */
     display: inline-block; /* Hace que los botones se coloquen en línea */
@@ -100,7 +100,7 @@
 .button-a {
     width: 50px; /* Tamaño del botón */
     height: 50px; /* Tamaño del botón */
-    background-color: red; /* Color de fondo del botón */
+    background-color: #911d3c; /* Color de fondo del botón */
     border: 5px solid black; /* Borde del botón */
     border-radius: 100%; /* Hace que el div sea un círculo */
     display: inline-block; /* Hace que los botones se coloquen en línea */
@@ -243,10 +243,16 @@
 
 .pokemon-grid-item {
     /* Add styles for individual Pokémon items here */
-    padding: 5px;
-    cursor: pointer; /* Changes the mouse cursor to indicate clickable items */
+    padding: 4px;
+     /* Changes the mouse cursor to indicate clickable items */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+
+.pokemon-grid-item.selected {
+    border: 2px solid blue; /* Example style */
+    border-radius: 5px; /* Rounded corners for the highlight */
+  }
+  

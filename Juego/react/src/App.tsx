@@ -15,9 +15,10 @@ export type Pokemon = {
 
 function App() {
   const [pokemones, setPokemones] = useState<Pokemon[]>([]);
+  const [selectedPokemonIndex, setSelectedPokemonIndex] = useState<number>(0);
   // const [count, setCount] = useState(0);
   const pokeUrl = "https://pokeapi.co/api/v2/pokemon";
-
+  const urlWithLimit = `${pokeUrl}?limit=200`;
   const fetchData = async (url: string) => {
     const response = await fetch(url);
     const data = await response.json();
@@ -26,7 +27,7 @@ function App() {
   };
 
   const pokemonData = async (pokeUrl: string) => {
-    const response = await fetchData(pokeUrl);
+    const response = await fetchData(urlWithLimit);
     const dataPromises = response.results.map(async (pokemon: Pokemon) => {
       const details = await fetchData(pokeUrl + "/" + pokemon.name);
       return {
@@ -45,6 +46,27 @@ function App() {
     pokemonData(pokeUrl);
   }, []);
 
+  const handleDirectionalClick = (direction: string) => {
+    let newIndex = selectedPokemonIndex;
+    switch (direction) {
+      case "up":
+        newIndex = Math.max(0, newIndex - 3);
+        break;
+      case "down":
+        newIndex = Math.min(pokemones.length - 1, newIndex + 3);
+        break;
+      case "left":
+        newIndex = Math.max(0, newIndex - 1);
+        break;
+      case "right":
+        newIndex = Math.min(pokemones.length - 1, newIndex + 1);
+        break;
+      default:
+        break;
+    }
+    setSelectedPokemonIndex(newIndex);
+  };
+
   return (
     <div className="main-container">
       <div className="gameboy-container">
@@ -52,16 +74,31 @@ function App() {
         <div className="layout-game">
           <div className="container-screen">
             <div className="screen-layout">
-              <ScreenPokemonnes pokemones={pokemones} />
+              <ScreenPokemonnes
+                pokemones={pokemones}
+                selectedPokemonIndex={selectedPokemonIndex}
+              />
             </div>
           </div>
 
           <div className="button-container">
             <div className="container-pad">
-              <button className="up-btn"></button>
-              <button className="down-btn"></button>
-              <button className="right-btn"></button>
-              <button className="left-btn"></button>
+              <button
+                className="up-btn"
+                onClick={() => handleDirectionalClick("up")}
+              ></button>
+              <button
+                className="down-btn"
+                onClick={() => handleDirectionalClick("down")}
+              ></button>
+              <button
+                className="right-btn"
+                onClick={() => handleDirectionalClick("right")}
+              ></button>
+              <button
+                className="left-btn"
+                onClick={() => handleDirectionalClick("left")}
+              ></button>
             </div>
             <div className="container-select">
               <div className="container-select-button">
