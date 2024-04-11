@@ -252,7 +252,8 @@
 
 
 .pokemon-grid-item.selected {
-    border: 2px solid blue; /* Example style */
-    border-radius: 5px; /* Rounded corners for the highlight */
+    border: 1px solid blue; /* Example style */
+    border-radius: 1px; /* Rounded corners for the highlight */
+    filter: drop-shadow(0 0 5px blue); /* Adds a blue drop shadow */
   }
   
