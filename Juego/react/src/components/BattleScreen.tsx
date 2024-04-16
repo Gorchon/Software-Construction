@@ -5,12 +5,15 @@ type BattleScreenProps = {
   selectedPokemon: Pokemon;
   opponentPokemon: Pokemon;
   backgroundUrl: string;
+  opponentHealth: number;
+  onAttack: () => void;
 };
 
 const BattleScreen: React.FC<BattleScreenProps> = ({
   selectedPokemon,
   opponentPokemon,
   backgroundUrl,
+  opponentHealth,
 }) => {
   return (
     <div
@@ -22,10 +25,13 @@ const BattleScreen: React.FC<BattleScreenProps> = ({
         src={selectedPokemon.sprites.back_default}
         alt={selectedPokemon.name}
       />
-      <img
-        src={opponentPokemon.sprites.front_default}
-        alt={opponentPokemon.name}
-      />
+      <div>
+        <img
+          src={opponentPokemon.sprites.front_default}
+          alt={opponentPokemon.name}
+        />
+        <p>Enemy Health: {opponentHealth}</p>
+      </div>
     </div>
   );
 };

@@ -26,8 +26,19 @@ function App() {
   const fetchData = async (url: string) => {
     const response = await fetch(url);
     const data = await response.json();
+
     console.log(data);
     return data;
+  };
+
+  const [opponentHealth, setOpponentHealth] = useState(100);
+  const handleAttack = () => {
+    const damage = Math.floor(Math.random() * 50) + 1; // Random damage between 1 and 50
+    setOpponentHealth((prevHealth) => Math.max(prevHealth - damage, 0));
+    if (opponentHealth <= 0) {
+      alert("You win!");
+      setShowBattleScreen(false);
+    }
   };
 
   const selectPokemon = () => {
@@ -96,6 +107,8 @@ function App() {
                   selectedPokemon={selectedPokemon}
                   opponentPokemon={pokemones[opponentIndex]}
                   backgroundUrl="https://preview.redd.it/d9spuwer2c491.png?width=1050&format=png&auto=webp&s=9ca8c75c63da9f8bb134e955d73e2770d073375e"
+                  opponentHealth={opponentHealth}
+                  onAttack={handleAttack}
                 />
               </div>
             </div>
@@ -137,10 +150,7 @@ function App() {
               </div>
               <div className="container-action">
                 <div className="button-a-container">
-                  <button
-                    className="button-a"
-                    onClick={() => console.log("ge")}
-                  ></button>
+                  <button className="button-a" onClick={handleAttack}></button>
                   <div>B</div>
                 </div>
 
