@@ -1,20 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchSpotifyApi } from "../../api/spotifyApi";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // State to hold the username and password
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ username: "", password: "" });
 
-  // Function to update state based on form changes
+  const navigate = useNavigate();
+
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target; // Destructure name and value from the event target
+    const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value, // Use the name to determine which part of state to update
+      [name]: value,
     }));
+  };
+
+  useEffect(() => {
     console.log(formData);
+  }, [formData]);
+
+  const handleLogin = async (event: React.MouseEvent) => {
+    event.preventDefault(); // Prevent default form submission
+    const clientId = `34cc06dbed6f47a5948cd3cfded3a6d2`;
+    const clientSecret = `b9ed8785dab24c968f929f1fbd35cd78ñ`;
+    const url = `https://accounts.spotify.com/api/token`;
+    const token = `Basic ${btoa(`${clientId}:${clientSecret}`)}`;
+    const body = `grant_type=client_credentials`;
+    navigate("/dashboard");
+    try {
+      const response = await fetchSpotifyApi(
+        url,
+        `POST`,
+        body,
+        `application/x-www-form-urlencoded`,
+        token
+      );
+
+      console.log(response);
+    } catch (error) {
+      console.error("Failed to login:", error);
+    }
   };
 
   return (
@@ -65,8 +90,9 @@ const Login = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
-              type="submit"
+              type="button" // Changed to button to prevent default form submission
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onClick={handleLogin}
             >
               Sign In
             </button>
