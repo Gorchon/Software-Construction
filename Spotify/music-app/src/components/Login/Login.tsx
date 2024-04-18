@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Login = () => {
+  // State to hold the username and password
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  // Function to update state based on form changes
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target; // Destructure name and value from the event target
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value, // Use the name to determine which part of state to update
+    }));
+    console.log(formData);
+  };
+
   return (
     <div
       className="w-full h-full flex flex-col justify-center items-center"
@@ -23,8 +39,11 @@ const Login = () => {
             <input
               type="text"
               id="username"
+              name="username"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Username"
+              value={formData.username}
+              onChange={handleOnChange}
             />
           </div>
           <div className="mb-6">
@@ -37,8 +56,11 @@ const Login = () => {
             <input
               type="password"
               id="password"
+              name="password"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="********"
+              value={formData.password}
+              onChange={handleOnChange}
             />
           </div>
           <div className="flex items-center justify-between">
