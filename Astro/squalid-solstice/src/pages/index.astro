@@ -1,5 +1,6 @@
 ---
 import Caard from "../components/card.astro";
+import HelloComponent from "../components/HelloComponent.jsx";
 ---
 
 <html lang="en">
@@ -12,8 +13,10 @@ import Caard from "../components/card.astro";
   </head>
   <body>
     <h1>Astro</h1>
+    <Caard title=" pene" text=" astrooooo" />
     <Caard />
     <Caard />
-    <Caard />
+    <!-- here we  use the helloComponent -->
+    <HelloComponent client:load />
   </body>
 </html>
