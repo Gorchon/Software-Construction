@@ -1,0 +1,27 @@
+[
+  {
+    "name": "chema",
+    "password": "123",
+    "encryptedPassword": "123"
+  },
+  {
+    "name": "AbC",
+    "password": "123",
+    "encryptedPassword": "123"
+  },
+  {
+    "name": "chema",
+    "password": "ABC",
+    "encryptedPassword": "DEF"
+  },
+  {
+    "name": "",
+    "password": "chema",
+    "encryptedPassword": "fkhpd"
+  },
+  {
+    "name": "cc",
+    "password": "ABC",
+    "encryptedPassword": "DEF"
+  }
+]
