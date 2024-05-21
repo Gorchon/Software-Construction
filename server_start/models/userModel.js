@@ -27,4 +27,27 @@ const createUser = async (user) => {
 }
 }
 
+const updateUser = async (id, user) => {
+    try {
+        const query = 'UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *';
+        const { rows } = await db.query(query, [user.name, user.email, id]);
+        return rows[0];
+    } catch (err) {
+        console.log('Error updating user', err);
+        return err;
+    }
+}
+
+const deleteUser = async (id) => {
+    try {
+        const query = 'DELETE FROM users WHERE id = $1';
+        await db.query(query, [id]);
+        return `User with id ${id} has been deleted`;
+    } catch (err) {
+        console.log('Error deleting user', err);
+        return err;
+    }
+}
+
+
 module.exports = {getAllUsers, getUserById, createUser}

@@ -45,5 +45,30 @@ async function createUser(req, res) {
     }
 }
 
+async function updateUser(req, res) {
+    const {id} = req.params;
+    const user = req.body;
+
+    try {
+        const updatedUser = await UserModel.updateUser(id, user);
+        res.json(updatedUser);
+    } catch (err) {
+        res.status(500).send('sos gilipollas ');
+        console.log('Error updating user', err);
+    }
+}
+
+async function deleteUser(req, res) {
+    const {id} = req.params;
+
+    try {
+        await UserModel.deleteUser(id);
+        res.json({message: 'User deleted'});
+    } catch (err) {
+        res.status(500).send('sos gilipollas ');
+        console.log('Error deleting user', err);
+    }
+}
+
 
 module.exports = {getAllUsers, getUserById, createUser}
