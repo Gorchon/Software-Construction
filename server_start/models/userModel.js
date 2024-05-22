@@ -47,7 +47,7 @@ const deleteUser = async (id) => {
         console.log('Error deleting user', err);
         return err;
     }
-}
+} 
 
 
 module.exports = {getAllUsers, getUserById, createUser}
