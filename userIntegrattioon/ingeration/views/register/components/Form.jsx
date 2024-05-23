@@ -1,8 +1,7 @@
 import { useState } from 'react';
-
 function Form() {
     const [form, setForm] = useState({
-        userName: '',
+        name: '',
         email: '',
         // password: '' // Uncomment or remove based on your requirements.
     });
@@ -13,35 +12,50 @@ function Form() {
             ...prevForm,
             [name]: value
         }));
-        console.log(name, value); // Combine logs or remove after testing
+        console.log(name, value); // Debugging purpose
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submit action
         console.log('Submitting form with:', form);
-        // Here you can add actions like sending data to a server
+
+        const res = await fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form)
+        });
+
+        if (res.status === 200) {
+            alert('User created successfully');
+            setForm({ name: '', email: '' }); // Reset form fields
+        } else {
+            alert('Failed to create user');
+        }
     };
 
     return (
         <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column'}}>
             <input
-             style={{height: '30px', marginBottom: '10px', width: '300px'}}
+                style={{height: '30px', marginBottom: '10px', width: '300px'}}
                 type="text"
                 name="userName"
                 placeholder="Nombre"
-                value={form.userName} // Control the input with React state
+                value={form.userName}
                 onChange={handleChange}
             />
             <input
-            style={{height: '30px', marginBottom: '10px', width: '300px'}}
+                style={{height: '30px', marginBottom: '10px', width: '300px'}}
                 type="email"
                 name="email"
                 placeholder="Email"
-                value={form.email} // Control the input with React state
+                value={form.email}
                 onChange={handleChange}
             />
-            {/* Uncomment or add input fields as necessary */}
-            <button type="submit" style={{height: '25px', backgroundColor: 'green', border: 'none' ,width: '150px', borderRadius:'5px'}}>Submit</button>
+            <button type="submit" style={{height: '25px', backgroundColor: 'green', border: 'none', width: '150px', borderRadius: '5px'}}>
+                Submit
+            </button>
         </form>
     );
 }
