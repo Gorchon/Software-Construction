@@ -2,6 +2,12 @@
 
 function Card({user}) {
     console.log("Rendering Card");
+
+    const handleClick = () => {
+        console.log(`Clicked ${user.name}`);
+    };
+
+    const Card = ({user})
     return (
         <div style={{
             width: '200px',  // Increased width
@@ -16,7 +22,7 @@ function Card({user}) {
             padding: '5px',  // Padding for better spacing
             margin: '5px',  // Margin between cards
             boxShadow: '0px 4px 8px rgba(0,0,0,0.1)'  // Optional: Add shadow for better aesthetics
-        }}>
+        }} onClick={handleClick}>
             <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>{user.name}</div>
             <div>{user.email}</div>
         </div>
