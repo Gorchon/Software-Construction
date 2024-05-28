@@ -1,11 +1,17 @@
 /*eslint-disable*/
+import {useNavigate } from 'react-router-dom';
 
 function Card({user}) {
     console.log("Rendering Card");
 
     const handleClick = () => {
         console.log(`Clicked ${user.name}`);
+        navigate(`/user/${user.id}`); 
     };
+
+    const navigate = useNavigate();
+
+
 
     const Card = ({user})
     return (
