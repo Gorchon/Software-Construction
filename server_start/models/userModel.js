@@ -16,27 +16,36 @@ const getUserById = async (id) => {
 
 const createUser = async (user) => {
     try {
-  
-        const query = 'INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *';
-        const { rows } = await db.query(query, [user.name, user.email]);    
+        const query = `
+            INSERT INTO users (name, email, address, phone, age, gender) 
+            VALUES ($1, $2, $3, $4, $5, $6) 
+            RETURNING *
+        `;
+        const { rows } = await db.query(query, [user.userName, user.email, user.address, user.phone, user.age, user.gender]);
         return rows[0];
-   
-}catch (err) {
-    console.log('This is an error', err);
-    return err;
-}
-}
+    } catch (err) {
+        console.log('This is an error', err);
+        return err;
+    }
+};
+
 
 const updateUser = async (id, user) => {
     try {
-        const query = 'UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *';
-        const { rows } = await db.query(query, [user.name, user.email, id]);
+        const query = `
+            UPDATE users 
+            SET name = $1, email = $2, address = $3, phone = $4, age = $5, gender = $6 
+            WHERE id = $7 
+            RETURNING *
+        `;
+        const { rows } = await db.query(query, [user.userName, user.email, user.address, user.phone, user.age, user.gender, id]);
         return rows[0];
     } catch (err) {
         console.log('Error updating user', err);
         return err;
     }
-}
+};
+
 
 const deleteUser = async (id) => {
     try {
