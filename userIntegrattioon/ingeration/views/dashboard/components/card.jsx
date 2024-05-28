@@ -5,7 +5,7 @@ function Card({user}) {
     console.log("Rendering Card");
 
     const handleClick = () => {
-        console.log(`Clicked ${user.name}`);
+        console.log(`Clicked ${user.id}`);
         navigate(`/user/${user.id}`); 
     };
 

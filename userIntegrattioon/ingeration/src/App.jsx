@@ -2,6 +2,7 @@
 import {Routes, Route} from 'react-router-dom';
 import Dashboard from '../views/dashboard/Dashboard';
 import Register from '../views/register/Register';
+import User from '../views/users/User';
 
 function App() {
   // const [users, setUsers] = useState([]);
@@ -21,6 +22,7 @@ function App() {
     <Routes>
       <Route path="/" element = {<Dashboard />} />
       <Route path="/register" element = {<Register />} />
+      <Route path="/user/:id" element = {<User />} />
     </Routes>
   );
 }
