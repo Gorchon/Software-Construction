@@ -35,7 +35,7 @@ const Login = () => {
         `application/x-www-form-urlencoded`,
         token
       );
-
+      // localStorage.setItem("token", response.access_token);
       console.log(response);
     } catch (error) {
       console.error("Failed to login:", error);
