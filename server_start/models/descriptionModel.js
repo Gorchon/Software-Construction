@@ -12,4 +12,15 @@ const getDescriptionById = async (id) => {
 
 }
 
+const createDescription = async ( description, prescription,  userId) => {
+    try {
+        const query = " INSERT INTO description (description, prescription, userd_id) VALUES ($1, $2, $3) RETURNING *;";
+        const { rows } = await db.query(query, [description, prescription, userId]);
+        return rows[0];
+    } catch (err) {
+        console.log('Error creating description', err);
+        throw new Error(err);
+    }
+}
+
 module.exports = { getDescriptionById };

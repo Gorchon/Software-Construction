@@ -12,4 +12,16 @@ const getFeedBackById = async (id) => {
 
 }
 
-module.exports = { getFeedBackById };
+//  `
+const createFeedBack = async ( feedBack, userId) => {
+    try {
+        const query = " INSERT INTO feedBack (feedback, userd_id) VALUES ($1, $2) RETURNING *;";
+        const { rows } = await db.query(query, [feedBack, userId]);
+        return rows[0];
+    } catch (err) {
+        console.log('Error creating FeedBack', err);
+        throw new Error(err);
+    }
+}
+
+module.exports = { getFeedBackById, createFeedBack };
