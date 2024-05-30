@@ -23,4 +23,4 @@ const createDescription = async ( description, prescription,  userId) => {
     }
 }
 
-module.exports = { getDescriptionById };
+module.exports = { getDescriptionById, createDescription};

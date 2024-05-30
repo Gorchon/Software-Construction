@@ -13,5 +13,18 @@ async function getDescriptionById(req, res) {
     }
 }
 
+async function createDescription(req, res) {
+    try {
+        const {userId} = req.params;
+        const { description, prescription } = req.body;
+        const newDescription = await descriptionModel.createDescription(description, prescription, userId);
+        res.status(201).json(newDescription);
+    }
+    catch (err) {
+        res.status(500).send('Error creating description');
+        console.log('Error creating description', err);
+    }
+}
 
-module.exports = { getDescriptionById };
+
+module.exports = {getDescriptionById, createDescription};
