@@ -28,6 +28,9 @@ async function getResponseChat (req, res) {
         }
         return response.json({response: responseText});
     } catch (err) {
-       
+        console.log('Error getting response from chat API', err);
+        res.status(500).send('Error getting response from chat');
     }
 }
+
+module.exports = {getResponseChat};

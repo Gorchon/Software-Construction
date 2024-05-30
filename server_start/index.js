@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 const userRoutes = require('./routes/userRoutes');
 const descriptionRoutes = require('./routes/descriptionRoutes');
 const feedBackRoutes = require('./routes/feedBackRoutes');
+const chatRoutes = require('./routes/chatOpenRoutes');
 app.get('/', (req, res) => {
     // res.send('Hello World');
     res.json({info: "The greater the sensibility the greater the suffering … much suffering. "}) // JSON response we can see this in the browser if we go to http://localhost:3000/ and 
@@ -26,3 +27,4 @@ app.listen(port, () => {
 app.use('/users', userRoutes);
 app.use('/descriptions', descriptionRoutes);
  app.use('/feedBack', feedBackRoutes);
+ app.use('/chat', chatRoutes);
