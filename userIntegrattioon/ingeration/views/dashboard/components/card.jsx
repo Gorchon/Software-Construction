@@ -1,5 +1,6 @@
 /*eslint-disable*/
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import userImg from '../../../src/assets/userImg.svg';
 
 function Card({ user }) {
     console.log("Rendering Card");
@@ -13,21 +14,25 @@ function Card({ user }) {
 
     return (
         <div style={{
-            width: '200px',  // Increased width
-            height: '60px',  // Increased height
-            border: 'solid black 2px',
+            width: '250px',  // Adjusted width to fit the image and text
+            height: '80px',  // Adjusted height to fit the image and text
             borderRadius: '5px',
             backgroundColor: '#df3078',  // Correct hex value for background color
             display: 'flex',
-            flexDirection: 'column',  // Stack children vertically
-            justifyContent: 'center',
+            flexDirection: 'row',  // Arrange children horizontally
             alignItems: 'center',
-            padding: '5px',  // Padding for better spacing
+            padding: '10px',  // Padding for better spacing
             margin: '5px',  // Margin between cards
             boxShadow: '0px 4px 8px rgba(0,0,0,0.1)'  // Optional: Add shadow for better aesthetics
         }} onClick={handleClick}>
-            <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>{user.name}</div>
-            <div>{user.email}</div>
+
+            <div style={{ marginRight: '10px' }}>
+                <img src={userImg} alt="User" width={50} height={50} />
+            </div>
+            <div style={{ textAlign: 'left' }}>
+                <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>{user.name}</div>
+                <div>{user.email}</div>
+            </div>
         </div>
     );
 }

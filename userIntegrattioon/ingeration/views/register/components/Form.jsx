@@ -31,7 +31,7 @@ function Form() {
             body: JSON.stringify(form)
         });
 
-        if (res.status === 200) {
+        if (res.ok) {
             alert('User created successfully');
             setForm({
                 userName: '',
@@ -42,7 +42,8 @@ function Form() {
                 gender: '',
             });
         } else {
-            alert('Failed to create user');
+            const errorText = await res.text();
+            alert(`Failed to create user: ${errorText}`);
         }
     };
 
