@@ -58,6 +58,24 @@ const User = () => {
         console.log(data);
     }
 
+    const handleSubmitUpdate = async () => {
+        const response = await fetch(`http://localhost:3000/descriptions/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form), // Include the form data
+        });
+
+        if (response.ok) {
+            alert('Description and Prescription updated successfully');
+            fetchDescription(); // Refresh the descriptions
+        } else {
+            const errorText = await response.text();
+            alert(`Failed to update: ${errorText}`);
+        }
+    }
+
     return (
         <div>
             <div>User</div>
@@ -66,7 +84,6 @@ const User = () => {
                 <img src={flor} alt="user" style={{ width: '100px', height: '100px' }} />
             </div>
             <div>
-                 {/* Capitalize the component name */}
                 <p>Description</p>
                 <textarea 
                     name="description" 
@@ -80,7 +97,12 @@ const User = () => {
                     onChange={handleInputChange} 
                 />
                 <div>
-                    <button style={{ backgroundColor: '#df3078', color: '#fff', padding: '10px', borderRadius: '5px' }}><p>Guardar</p></button>
+                    <button 
+                        style={{ backgroundColor: '#df3078', color: '#fff', padding: '10px', borderRadius: '5px' }}
+                        onClick={handleSubmitUpdate} // Add onClick to handleSubmitUpdate
+                    >
+                        <p>Guardar</p>
+                    </button>
                 </div>
                 <div>
                     <button 
@@ -89,7 +111,7 @@ const User = () => {
                     >
                         <p>Generar Ejercicios</p>
                     </button>
-                </div> {/* Remove the extra '>' */}
+                </div>
             </div>
         </div>
     );
