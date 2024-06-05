@@ -1,5 +1,7 @@
 import Card from '../dashboard/components/card';
 import { useEffect, useState } from 'react';
+import NavigationBar from '../../src/shared/NavigationBar';
+// /Users/chema./Documents/Programming/computational methods/Software Construction/userIntegrattioon/ingeration/src/shared/NavigationBar.jsx
 
 function Dashboard() {
   const [users, setUsers] = useState([]);
@@ -19,6 +21,7 @@ function Dashboard() {
   }, []);
 
   return (
+    <NavigationBar>
       <div>
           <h1>Dashboard</h1>
           <div>
@@ -29,6 +32,7 @@ function Dashboard() {
               ))}
           </div>
       </div>
+      </NavigationBar>
   );
 }
 
