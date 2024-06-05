@@ -1,11 +1,13 @@
 require('dotenv').config();
-const OpenAI = require('openai-api');
+const OpenAI = require('openai');
 
-async function getResponseChat (req, res) {
-    const openai = new OpenAI(process.env.OPENAI_API_KEY);
-    const {prompt} = req.body;
+async function getResponseChat(req, res) {
+    const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
+    const { prompt } = req.body;
     try {
-        const stream = await openai.completions.create({
+        const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
                 {
@@ -16,21 +18,19 @@ async function getResponseChat (req, res) {
                     role: 'user',
                     content: prompt,
                 },
-                
             ],
             stream: true,
-            
-
         });
-        let response = '';
-        for await(const chunk of stream) {
+
+        let responseText = '';
+        for await (const chunk of completion) {
             responseText += chunk.choices[0].message.content || '';
         }
-        return response.json({response: responseText});
+        return res.json({ response: responseText });
     } catch (err) {
         console.log('Error getting response from chat API', err);
         res.status(500).send('Error getting response from chat');
     }
 }
 
-module.exports = {getResponseChat};
+module.exports = { getResponseChat };
