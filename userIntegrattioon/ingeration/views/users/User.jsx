@@ -83,6 +83,7 @@ const User = () => {
             <div>
                 <img src={flor} alt="user" style={{ width: '100px', height: '100px' }} />
             </div>
+            <PrevDescription descriptions={descriptions} />
             <div>
                 <p>Description</p>
                 <textarea 

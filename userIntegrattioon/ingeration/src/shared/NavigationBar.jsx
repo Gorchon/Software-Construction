@@ -1,33 +1,57 @@
-// eslint-disable react/prop-types
+
 import { BiHomeAlt } from "react-icons/bi";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-const handleNavigate = (route) => {
-    window.location.pathname = route;
-}
+import { useState } from "react";
 
-const NavigationBar = ({ children }) => {
-  return (
-    <div style={{ height: '60px', width: '100%', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', padding: '10px 20px', backgroundColor: '#fff' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', marginRight: '20px' }} onClick={() => handleNavigate('/')}>
-            <p style={{ margin: '0 10px 0 0' }}>Dashboard</p>
-            <BiHomeAlt />
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => handleNavigate('/register')}>
-            <p style={{ margin: '0 10px 0 0' }}>Registro</p>
-            {/* <input style={{ border: '2px solid black', width: '200px', borderRadius: '10px', height: '30px', padding: '2px 5px', fontSize: '16px' }} type="text" /> */}
-          </div>
+import React from "react";
+
+// eslint-disable-next-line react/prop-types
+const NavigationBar = ({children}) => {
+    const [name, setName] = useState("");
+
+    const handleNavigate = (route) => {
+        window.location.pathname = route;
+    }
+
+    const handleNameChange = (event) => {
+      setName(event.target.value);
+    }
+
+
+    return (
+        <div style={{
+            width: "100%", 
+            height: '40px',
+            boxShadow: '0px 4px 8px rgba(0,0,0,0.1)'
+            }}>
+
+        <div style={{display: 'flex'}}>
+        <div onClick={() => handleNavigate("/")} style={{display: 'flex', cursor: 'pointer'}}>
+        <BiHomeAlt style={{marginTop: '10px', height: '35px'}} />
+        <p>Dashboard</p>
         </div>
-      </div>
-      {children}
-    </div>
-  );
-}
+        <div onClick={() => handleNavigate("/register")} style={{display: 'flex', cursor: 'pointer'}}>
+        <p>Register</p>
+        </div>
 
-NavigationBar.propTypes = { 
-  children: PropTypes.node
-};
+        <input style={{
+            border: "2px black solid",
+            width: "150px",
+            height: "25px",
+            borderRadius: '10px'}}  
+            type="text" 
+            placeholder="Filtrar por nombre" 
+            onChange={handleNameChange}
+            />
+
+        </div>
+
+          {React.Children.map(children, (child) => {
+            return React.cloneElement(child, { name });
+          })}
+        </div>
+    );
+}
 
 export default NavigationBar;
