@@ -5,6 +5,7 @@ import NavigationBar from '../../src/shared/NavigationBar';
 
 function Dashboard() {
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState('');
 
   const fetchUsers = async () => {
       try {
@@ -20,12 +21,19 @@ function Dashboard() {
       fetchUsers();
   }, []);
 
+  const filteredUsers = users.filter(user => user?.name?.toLowerCase().includes(search.toLowerCase()));
+
   return (
     <NavigationBar>
       <div>
+          <input 
+          value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          style={{ border: '2px solid black', width: '200px', borderRadius: '10px', height: '30px', padding: '2px 5px', fontSize: '16px' }} type="text" />
+
           <h1>Dashboard</h1>
           <div>
-              {users.map(user => (
+              {filteredUsers.map(user => (
                   <div key={user.id}>
                       <Card user={user} />
                   </div>

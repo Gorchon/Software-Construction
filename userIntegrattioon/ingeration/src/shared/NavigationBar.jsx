@@ -17,7 +17,7 @@ const NavigationBar = ({ children }) => {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => handleNavigate('/register')}>
             <p style={{ margin: '0 10px 0 0' }}>Registro</p>
-            <input style={{ border: '2px solid black', width: '200px', borderRadius: '10px', height: '30px', padding: '2px 5px', fontSize: '16px' }} type="text" />
+            {/* <input style={{ border: '2px solid black', width: '200px', borderRadius: '10px', height: '30px', padding: '2px 5px', fontSize: '16px' }} type="text" /> */}
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@ const NavigationBar = ({ children }) => {
   );
 }
 
-NavigationBar.propTypes = {
+NavigationBar.propTypes = { 
   children: PropTypes.node
 };
 
