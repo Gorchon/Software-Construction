@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import flor from '../../src/assets/flor.svg';
 import PrevDescription from './components/prevDescription'; 
 import { CardInfo } from "./components/CardInfo";
+import '../../views/dashboard/Dashboard.css'; // Import the CSS file
 
 const User = () => {
     const { id } = useParams(); // Destructure the id from useParams
@@ -56,6 +56,7 @@ const User = () => {
         });
         const data = await response.json();
         console.log(data);
+        setForm({ ...form, prescription: data.response });
     }
 
     const handleSubmitUpdate = async () => {
@@ -77,41 +78,80 @@ const User = () => {
     }
 
     return (
-        <div>
-            <div>User</div>
-            <CardInfo user={users} />
-            <div>
-                <img src={flor} alt="user" style={{ width: '100px', height: '100px' }} />
-            </div>
-            <PrevDescription descriptions={descriptions} />
-            <div>
-                <p>Description</p>
-                <textarea 
-                    name="description" 
-                    value={form.description} 
-                    onChange={handleInputChange} 
-                />
-                <p>Prescription</p>
-                <textarea 
-                    name="prescription" 
-                    value={form.prescription} 
-                    onChange={handleInputChange} 
-                />
-                <div>
-                    <button 
-                        style={{ backgroundColor: '#df3078', color: '#fff', padding: '10px', borderRadius: '5px' }}
-                        onClick={handleSubmitUpdate} // Add onClick to handleSubmitUpdate
-                    >
-                        <p>Guardar</p>
-                    </button>
+        <div className="dashboard"> {/* Apply the same class as the dashboard */}
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%', maxWidth: '1200px', margin: '0 auto', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ marginBottom: '20px', width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                    <CardInfo user={users} />
+                    <PrevDescription descriptions={descriptions} />
                 </div>
-                <div>
-                    <button 
-                        style={{ backgroundColor: '#df3078', color: '#fff', padding: '10px', borderRadius: '5px' }} 
-                        onClick={handleGenerateHelp} // Add onClick to handleGenerateHelp
-                    >
-                        <p>Generar Ejercicios</p>
-                    </button>
+                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <p>Description</p>
+                    <textarea 
+                        name="description" 
+                        value={form.description} 
+                        onChange={handleInputChange} 
+                        style={{
+                            width: '100%',
+                            maxWidth: '600px',
+                            height: '100px',
+                            padding: '10px',
+                            borderRadius: '5px',
+                            border: '1px solid #ccc',
+                            marginBottom: '10px',
+                        }}
+                    />
+                    <p>Prescription</p>
+                    <textarea 
+                        name="prescription" 
+                        value={form.prescription} 
+                        onChange={handleInputChange} 
+                        style={{
+                            width: '100%',
+                            maxWidth: '600px',
+                            height: '100px',
+                            padding: '10px',
+                            borderRadius: '5px',
+                            border: '1px solid #ccc',
+                            marginBottom: '10px',
+                        }}
+                    />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '600px' }}>
+                        <button 
+                            style={{
+                                height: '50px',
+                                width: '45%',
+                                backgroundColor: '#7749DE',
+                                border: 'none',
+                                color: 'white',
+                                cursor: 'pointer',
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                textAlign: 'center',
+                                borderRadius: '5px',
+                                marginBottom: '10px',
+                            }}
+                            onClick={handleSubmitUpdate}
+                        >
+                            Guardar
+                        </button>
+                        <button 
+                            style={{
+                                height: '50px',
+                                width: '45%',
+                                backgroundColor: '#7749DE',
+                                border: 'none',
+                                color: 'white',
+                                cursor: 'pointer',
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                textAlign: 'center',
+                                borderRadius: '5px',
+                            }}
+                            onClick={handleGenerateHelp}
+                        >
+                            Generar Ejercicios
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
