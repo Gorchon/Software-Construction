@@ -13,8 +13,10 @@ const User = () => {
         console.log("ID from users", id);
         console.log("Fetching Description");
         const response = await fetch(`http://localhost:3000/descriptions/${id}`); // Correct URL concatenation
+        
         const data = await response.json();
         setDescriptions(data);
+        console.log("this is the data", data);
         return data;
     };
 
