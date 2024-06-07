@@ -15,15 +15,15 @@ const User = () => {
         const response = await fetch(`http://localhost:3000/descriptions/${id}`); // Correct URL concatenation
         const data = await response.json();
         setDescriptions(data);
-        console.log(data);
         return data;
     };
 
-    // Add state for description
+    // Add state for description and prescription
     const [form, setForm] = useState({
         description: "",
         prescription: "",
     });
+    console.log("Form", form);
 
     useEffect(() => {
         console.log("Fetching Description");
@@ -65,7 +65,10 @@ const User = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(form), // Include the form data
+            body: JSON.stringify({
+                description: form.description,
+                prescription: form.prescription,
+            }), // Include the form data
         });
 
         if (response.ok) {
@@ -79,78 +82,80 @@ const User = () => {
 
     return (
         <div className="dashboard"> {/* Apply the same class as the dashboard */}
-            <div style={{ display: 'flex', justifyContent: 'center', width: '100%', maxWidth: '1200px', margin: '0 auto', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ marginBottom: '20px', width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-                    <CardInfo user={users} />
-                    <PrevDescription descriptions={descriptions} />
-                </div>
-                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <p>Description</p>
-                    <textarea 
-                        name="description" 
-                        value={form.description} 
-                        onChange={handleInputChange} 
-                        style={{
-                            width: '100%',
-                            maxWidth: '600px',
-                            height: '100px',
-                            padding: '10px',
-                            borderRadius: '5px',
-                            border: '1px solid #ccc',
-                            marginBottom: '10px',
-                        }}
-                    />
-                    <p>Prescription</p>
-                    <textarea 
-                        name="prescription" 
-                        value={form.prescription} 
-                        onChange={handleInputChange} 
-                        style={{
-                            width: '100%',
-                            maxWidth: '600px',
-                            height: '100px',
-                            padding: '10px',
-                            borderRadius: '5px',
-                            border: '1px solid #ccc',
-                            marginBottom: '10px',
-                        }}
-                    />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '600px' }}>
-                        <button 
+            <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', alignItems: 'flex-start' }}>
+                <PrevDescription descriptions={descriptions} />
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                    <div style={{ flex: '1', marginRight: '20px' }}>
+                        <CardInfo user={users} />
+                    </div>
+                    <div style={{ flex: '2', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <p>Description</p>
+                        <textarea 
+                            name="description" 
+                            value={form.description} 
+                            onChange={handleInputChange} 
                             style={{
-                                height: '50px',
-                                width: '45%',
-                                backgroundColor: '#7749DE',
-                                border: 'none',
-                                color: 'white',
-                                cursor: 'pointer',
-                                fontSize: '14px',
-                                fontWeight: 'bold',
-                                textAlign: 'center',
+                                width: '100%',
+                                maxWidth: '600px',
+                                height: '100px',
+                                padding: '10px',
                                 borderRadius: '5px',
+                                border: '1px solid #ccc',
                                 marginBottom: '10px',
                             }}
-                            onClick={handleSubmitUpdate}
-                        >
-                            Guardar
-                        </button>
-                        <button 
+                        />
+                        <p>Prescription</p>
+                        <textarea 
+                            name="prescription" 
+                            value={form.prescription} 
+                            onChange={handleInputChange} 
                             style={{
-                                height: '50px',
-                                width: '45%',
-                                backgroundColor: '#7749DE',
-                                border: 'none',
-                                color: 'white',
-                                cursor: 'pointer',
-                                fontSize: '14px',
-                                fontWeight: 'bold',
-                                textAlign: 'center',
+                                width: '100%',
+                                maxWidth: '600px',
+                                height: '100px',
+                                padding: '10px',
                                 borderRadius: '5px',
+                                border: '1px solid #ccc',
+                                marginBottom: '10px',
                             }}
-                            onClick={handleGenerateHelp}
-                        >
-                            Generar Ejercicios
-                        </button>
+                        />
+                        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '600px' }}>
+                            <button 
+                                style={{
+                                    height: '50px',
+                                    width: '45%',
+                                    backgroundColor: '#7749DE',
+                                    border: 'none',
+                                    color: 'white',
+                                    cursor: 'pointer',
+                                    fontSize: '14px',
+                                    fontWeight: 'bold',
+                                    textAlign: 'center',
+                                    borderRadius: '5px',
+                                    marginBottom: '10px',
+                                }}
+                                onClick={handleSubmitUpdate}
+                            >
+                                Guardar
+                            </button>
+                            <button 
+                                style={{
+                                    height: '50px',
+                                    width: '45%',
+                                    backgroundColor: '#7749DE',
+                                    border: 'none',
+                                    color: 'white',
+                                    cursor: 'pointer',
+                                    fontSize: '14px',
+                                    fontWeight: 'bold',
+                                    textAlign: 'center',
+                                    borderRadius: '5px',
+                                }}
+                                onClick={handleGenerateHelp}
+                            >
+                                Generar Ejercicios
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

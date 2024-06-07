@@ -22,6 +22,7 @@ export const CardInfo = ({ user }) => {
       <p style={{ margin: '10px 0', color: '#fff' }}>{user.phone}</p>
       <p style={{ margin: '10px 0', color: '#fff' }}>{user.age}</p>
       <p style={{ margin: '10px 0', color: '#fff' }}>{user.gender}</p>
+      
     </div>
   );
 };
