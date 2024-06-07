@@ -24,6 +24,8 @@ const User = () => {
     const [form, setForm] = useState({
         description: "",
         prescription: "",
+        question: "",
+        answer: ""
     });
     console.log("Form", form);
 
@@ -82,16 +84,20 @@ const User = () => {
         }
     }
 
+    const handleGenerateRAG = async () => {
+        // Add logic to generate RAG question
+    }
+
     return (
         <div className="dashboard"> {/* Apply the same class as the dashboard */}
             <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', alignItems: 'flex-start' }}>
                 <PrevDescription descriptions={descriptions} />
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                    <div style={{ flex: '1', marginRight: '20px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+                    <div style={{ flex: '1', marginRight: '20px', paddingRight:"85px", paddingTop:"40px"}}>
                         <CardInfo user={users} />
                     </div>
-                    <div style={{ flex: '2', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <p>Description</p>
+                    <div style={{ flex: '2', display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: '20px' }}>
+                        <p>This is the matter: </p>
                         <textarea 
                             name="description" 
                             value={form.description} 
@@ -108,7 +114,7 @@ const User = () => {
                                 resize: 'vertical' // Allow vertical resizing
                             }}
                         />
-                        <p>Prescription</p>
+                        <p>Prescription of your gymbro</p>
                         <textarea 
                             name="prescription" 
                             value={form.prescription} 
@@ -125,7 +131,7 @@ const User = () => {
                                 resize: 'vertical' // Allow vertical resizing
                             }}
                         />
-                        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '600px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '600px'}}>
                             <button 
                                 style={{
                                     height: '50px',
@@ -142,7 +148,7 @@ const User = () => {
                                 }}
                                 onClick={handleSubmitUpdate}
                             >
-                                Guardar
+                                Save
                             </button>
                             <button 
                                 style={{
@@ -159,9 +165,61 @@ const User = () => {
                                 }}
                                 onClick={handleGenerateHelp}
                             >
-                                Generar Ejercicios
+                                Embrace the Insanity
                             </button>
                         </div>
+                    </div>
+                    <div style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', paddingTop: "55px", paddingLeft:"80px"}}>
+                        <textarea 
+                            name="question" 
+                            value={form.question} 
+                            onChange={handleInputChange} 
+                            placeholder="RAG Question"
+                            style={{
+                                width: '300px',
+                                height: '150px',
+                                padding: '10px',
+                                borderRadius: '5px',
+                                border: '1px solid #ccc',
+                                marginBottom: '10px',
+                                overflow: 'auto', // Ensure text area is scrollable
+                                resize: 'none' // Disable resizing
+                            }}
+                        />
+                        <textarea 
+                            name="answer" 
+                            value={form.answer} 
+                            onChange={handleInputChange} 
+                            placeholder="RAG Answer"
+                            style={{
+                                width: '300px',
+                                height: '150px',
+                                padding: '10px',
+                                borderRadius: '5px',
+                                border: '1px solid #ccc',
+                                marginBottom: '10px',
+                                overflow: 'auto', // Ensure text area is scrollable
+                                resize: 'none' // Disable resizing
+                            }}
+                        />
+                        <button 
+                            style={{
+                                height: '50px',
+                                width: '300px',
+                                backgroundColor: '#7749DE',
+                                border: 'none',
+                                color: 'white',
+                                cursor: 'pointer',
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                textAlign: 'center',
+                                borderRadius: '5px',
+                                marginBottom: '10px',
+                            }}
+                            onClick={handleGenerateRAG}
+                        >
+                            Generate RAG Question
+                        </button>
                     </div>
                 </div>
             </div>
