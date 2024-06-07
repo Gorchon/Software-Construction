@@ -49,7 +49,7 @@ const User = () => {
     };
 
     const handleGenerateHelp = async () => {
-        const response = await fetch(`http://localhost:3000/chat`, {
+        const response = await fetch(`http://localhost:3000/chat/gemini`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -104,6 +104,8 @@ const User = () => {
                                 borderRadius: '5px',
                                 border: '1px solid #ccc',
                                 marginBottom: '10px',
+                                overflow: 'auto', // Ensure text area is scrollable
+                                resize: 'vertical' // Allow vertical resizing
                             }}
                         />
                         <p>Prescription</p>
@@ -114,11 +116,13 @@ const User = () => {
                             style={{
                                 width: '100%',
                                 maxWidth: '600px',
-                                height: '100px',
+                                height: '300px',
                                 padding: '10px',
                                 borderRadius: '5px',
                                 border: '1px solid #ccc',
                                 marginBottom: '10px',
+                                overflow: 'auto', // Ensure text area is scrollable
+                                resize: 'vertical' // Allow vertical resizing
                             }}
                         />
                         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '600px' }}>

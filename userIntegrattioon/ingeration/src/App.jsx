@@ -12,7 +12,7 @@ function App() {
     <Routes>
       <Route path="/" element = { <NavigationBar><Dashboard /></NavigationBar> } />
       
-      <Route path="/register" element = {<Register />} />
+      <Route path="/register" element = {<NavigationBar><Register /></NavigationBar>} />
       <Route path="/user/:id" element = { <NavigationBar><User /></NavigationBar>} />
     </Routes>
   );
