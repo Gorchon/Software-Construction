@@ -16,12 +16,10 @@ function Form() {
             ...prevForm,
             [name]: value
         }));
-        console.log(name, value);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Submitting form with:', form);
 
         const res = await fetch('http://localhost:3000/users', {
             method: 'POST',
@@ -41,6 +39,7 @@ function Form() {
                 age: '',
                 gender: '',
             });
+            window.location.pathname = '/'; // Navigate to the home page
         } else {
             const errorText = await res.text();
             alert(`Failed to create user: ${errorText}`);
@@ -48,9 +47,8 @@ function Form() {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
+        <form onSubmit={handleSubmit}>
             <input
-                style={{ height: '30px', marginBottom: '10px', width: '300px' }}
                 type="text"
                 name="userName"
                 placeholder="Nombre"
@@ -58,7 +56,6 @@ function Form() {
                 onChange={handleChange}
             />
             <input
-                style={{ height: '30px', marginBottom: '10px', width: '300px' }}
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -66,7 +63,6 @@ function Form() {
                 onChange={handleChange}
             />
             <input
-                style={{ height: '30px', marginBottom: '10px', width: '300px' }}
                 type="text"
                 name="address"
                 placeholder="Address"
@@ -74,7 +70,6 @@ function Form() {
                 onChange={handleChange}
             />
             <input
-                style={{ height: '30px', marginBottom: '10px', width: '300px' }}
                 type="text"
                 name="phone"
                 placeholder="Phone"
@@ -82,7 +77,6 @@ function Form() {
                 onChange={handleChange}
             />
             <input
-                style={{ height: '30px', marginBottom: '10px', width: '300px' }}
                 type="number"
                 name="age"
                 placeholder="Age"
@@ -90,7 +84,6 @@ function Form() {
                 onChange={handleChange}
             />
             <select
-                style={{ height: '30px', marginBottom: '10px', width: '300px' }}
                 name="gender"
                 value={form.gender}
                 onChange={handleChange}
@@ -100,7 +93,7 @@ function Form() {
                 <option value="female">Female</option>
                 <option value="other">Other</option>
             </select>
-            <button type="submit" style={{ height: '25px', backgroundColor: 'green', border: 'none', width: '150px', borderRadius: '5px' }}>
+            <button type="submit">
                 Submit
             </button>
         </form>

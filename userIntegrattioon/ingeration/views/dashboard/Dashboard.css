@@ -14,10 +14,11 @@ body, html {
     color: white; /* Text color to white */
   }
   
-  .dashboard h1 {
+  .dashboard h1, .register-title {
     font-size: 3rem; /* Make the text bigger */
-    text-shadow: 2px 2px 4px #000000; /* Add a shadow to create an outline effect */
+    text-shadow: 2px 2px 4px #000000, -2px -2px 4px #000000, 2px -2px 4px #000000, -2px 2px 4px #000000; /* Add a shadow to create an outline effect */
     margin-bottom: 20px; /* Space below the heading */
+    color: white; /* Text color to white */
   }
   
   .card-container {
@@ -34,5 +35,52 @@ body, html {
     box-sizing: border-box;
     display: flex;
     justify-content: center; /* Center cards horizontally */
+  }
+  
+  .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(3deg, #000021 70%, silver 100%);
+  }
+  
+  .form-container {
+    background-color: #121430;
+    padding: 20px;
+    border-bottom: 4px solid #7749DE;
+    border-radius: 10px;
+  }
+  
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align items */
+    width: 100%;
+  }
+  
+  .form-container input,
+  .form-container select,
+  .form-container button {
+    height: 40px;
+    margin-bottom: 15px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #121430; /* Background color of the inputs */
+    color: white; /* Text color inside inputs */
+    border: 2px solid #7749DE; /* Border color for inputs */
+  }
+  
+  .form-container button {
+    background-color: #7749DE; /* Background color for the button */
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    height: 40px; /* Ensure the button has the same height as other inputs */
+    width: 300px; /* Ensure the button has the same width as other inputs */
   }
   
